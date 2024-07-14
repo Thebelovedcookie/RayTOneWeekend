@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:27:37 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/06/27 16:17:59 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:03:49 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_scene	*create_scene(void)
 	if (!scene->tab_cy)
 		ex_malloc_fail(scene);
 	*(scene->tab_cy) = NULL;
+	scene->nb_object = 0;
 	return (scene);
 }
 

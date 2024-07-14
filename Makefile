@@ -1,6 +1,6 @@
 NAME = minirt
 
-SRC = main.c fill_scene.c scene.c init_scene.c add_object.c error.c free.c test_function.c window.c render.c math_formule.c
+SRC = main.c fill_scene.c scene.c init_scene.c add_object.c error.c free.c test_function.c window.c render.c math_formule.c hit_plane.c sphere_intersection.c camera.c cylinder.c
 
 OBJ = $(SRC:.c=.o)
 

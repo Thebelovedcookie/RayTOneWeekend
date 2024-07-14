@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:08:27 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/01 20:43:00 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:59:22 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	fill_sphere(char *str, t_sphere *sphere, t_scene *scene)
 	sphere->color.x = (double)color.red / 255;
 	sphere->color.y = (double)color.green / 255;
 	sphere->color.z = (double)color.blue / 255;
+	scene->nb_object += 1;
+	sphere->n_object = scene->nb_object;
 }
 
 void	fill_plane(char *str, t_plane *plane, t_scene *scene)
@@ -135,6 +137,8 @@ void	fill_plane(char *str, t_plane *plane, t_scene *scene)
 	plane->color.x = (double)color.red / 255;
 	plane->color.y = (double)color.green / 255;
 	plane->color.z = (double)color.blue / 255;
+	scene->nb_object += 1;
+	plane->n_object = scene->nb_object;
 }
 
 void	fill_cylindre(char *str, t_cylindre *cylindre, t_scene *scene)
@@ -167,4 +171,6 @@ void	fill_cylindre(char *str, t_cylindre *cylindre, t_scene *scene)
 	cylindre->color.x = (double)color.red / 255;
 	cylindre->color.y = (double)color.green / 255;
 	cylindre->color.z = (double)color.blue / 255;
+	scene->nb_object += 1;
+	cylindre->n_object = scene->nb_object;
 }

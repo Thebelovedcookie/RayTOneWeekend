@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:28:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/12 16:02:43 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/13 11:11:08 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "./libft/libft.h"
 # include <math.h>
 # include "type.h"
+# include <limits.h>
 
 typedef struct s_ambilight
 {
@@ -53,6 +54,7 @@ typedef struct s_light
 
 typedef struct s_sphere
 {
+	double			n_object;
 	t_fvec3			center;
 	double			diameter;
 	t_fvec3			color;
@@ -61,6 +63,7 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
+	double			n_object;
 	t_fvec3			point;
 	t_fvec3			normalize;
 	t_fvec3			color;
@@ -69,6 +72,7 @@ typedef struct s_plane
 
 typedef struct s_cylindre
 {
+	double				n_object;
 	t_fvec3				center;
 	t_fvec3				normalize;
 	double				diameter;
@@ -82,6 +86,7 @@ typedef struct s_scene
 	t_ambilight	ambi;
 	t_camera	cam;
 	t_light		light;
+	int			nb_object;
 	t_sphere	**tab_sp;
 	t_plane		**tab_pl;
 	t_cylindre	**tab_cy;
@@ -110,12 +115,21 @@ typedef struct s_ray
 	t_fvec3	ray_direction;
 }				t_ray;
 
+typedef struct s_hit
+{
+	double	nb_objet;
+	double	lowest_t;
+	double	type_objet;
+}				t_hit;
+
 typedef struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		size_x;
 	int		size_y;
+	double	**tab_inter;
+	t_hit	hit;
 	t_ratio	ratio;
 	t_ray	ray;
 	t_img	img;
@@ -154,7 +168,6 @@ void		create_window(t_scene *scene, t_window *window);
 //hook
 int			close_via_escape(int keycode, void *param);
 int			close_via_cross(void *param);
-int			resize(void *param);
 
 /*************************** RENDER MANAGEMENT ******************************/
 
@@ -164,8 +177,15 @@ int			create_trgb(t_fvec3 color);
 t_fvec3		get_color(t_window *window);
 void		aspect_ratio(t_window *window);
 double		hit_sphere(t_window *window, t_sphere *sphere);
-double		per_pixel(t_vec2 coord, t_window *window, t_sphere *sphere);
-int			hit_plane(t_vec2 coord, t_window *window, t_plane *plane);
+double		hit_plane(t_window *window, t_plane *plane);
+void		intersect_function(t_window *window);
+t_fvec3		sphere_hitted(t_window *window);
+int			hit(t_window *window);
+void		init_tab(t_window *window);
+t_fvec3		at(double t, t_window *window);
+t_fvec3		plane_hitted(t_window *window);
+double		hit_cylinder(t_window *window, t_cylindre *cylindre);
+t_fvec3		cylinder_hitted(t_window *window);
 
 /*************************** MATH FORMULE     *******************************/
 
