@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:00:07 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/06/27 16:19:25 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:42:32 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_scene(t_scene *scene)
 	printf("----------Camera :----------\n"
 		" viewpoint	: x : %.2f, y: %.2f, z: %.2f\n"
 		" normalize 	: x: %.2f, y: %.2f, z: %.2f\n"
-		" fov		: %d\n",
+		" fov		: %f\n",
 		scene->cam.view_point.x,
 		scene->cam.view_point.y,
 		scene->cam.view_point.z,
@@ -99,4 +99,9 @@ void	print_scene(t_scene *scene)
 			plane_tmp->color.z);
 		plane_tmp = plane_tmp->next;
 	}
+}
+
+void	print_vec3(t_fvec3 a, char *name)
+{
+	printf("%s : x = %f \t y = %f \t z = %f \n", name, a.x, a.y, a.z);
 }

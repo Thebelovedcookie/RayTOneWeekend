@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:33:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/06/25 23:59:59 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:09:10 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ t_fvec3	divide_vec3(t_fvec3 a, double b)
 	d.x = c * a.x;
 	d.y = c * a.y;
 	d.z = c * a.z;
+	return (d);
+}
+
+t_fvec3	negating_vec3(t_fvec3 a)
+{
+	t_fvec3	d;
+
+	d.x = -a.x;
+	d.y = -a.y;
+	d.z = -a.z;
 	return (d);
 }
 
@@ -106,4 +116,9 @@ double	length_squared(t_fvec3 a)
 t_fvec3		unit_vector(t_fvec3 a)
 {
 	return (divide_vec3(a, length(a)));
+}
+
+t_fvec3	normal_at(t_sphere *sphere, t_fvec3 point)
+{
+	return (unit_vector(minus_vec3(point, sphere->center)));
 }

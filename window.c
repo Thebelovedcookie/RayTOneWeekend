@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 20:49:14 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/13 22:07:29 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:07:15 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_window(t_scene *scene, t_window *window)
 	mlx_get_screen_size(window->mlx_ptr, &window->size_x, &window->size_y);
 	printf("x = %d y = %d\n", window->size_x, window->size_y);
 	window->size_x /= 2;
-	window->size_y /= 2;
+	window->size_y = window->size_x;
 	window->win_ptr = mlx_new_window(window->mlx_ptr, window->size_x,
 			window->size_y, "my_window");
 	if (!window->win_ptr)
