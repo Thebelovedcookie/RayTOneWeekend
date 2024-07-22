@@ -14,10 +14,10 @@ void	diffuse(t_fvec3 color, t_window *window, t_phong *phong)
 {
 	double	light_dot_normal;
 
-	phong->lightv = unit_vector(minus_vec3(window->scene->light.light_point,
+	phong->lightv = normalized(sub_vec(window->scene->light.light_point,
 				phong->intersected_point));
 	window->ray.ray_light_origin = phong->intersected_point;
-	window->ray.ray_light_direction = minus_vec3(window->scene->light.light_point,
+	window->ray.ray_light_direction = sub_vec(window->scene->light.light_point,
 				phong->intersected_point);
 	if (intersect_function_shad(window) == 0)
 	{
@@ -64,6 +64,6 @@ t_fvec3	reflection(t_fvec3 in, t_fvec3 normal)
 	dot_result = dot_product(in, normal);
 	a = double_x_vec3(2, normal);
 	b = double_x_vec3(dot_result, a);
-	result = minus_vec3(in, b);
+	result = sub_vec(in, b);
 	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:53:35 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/20 17:31:10 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:04:31 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ double	hit_plane(t_window *window, t_plane *plane)
 	double	denominator;
 	double	numerator;
 
-	l = unit_vector(window->ray.ray_direction);
-	numerator = dot_product(minus_vec3(plane->point, window->ray.ray_direction), plane->normalize);
+	l = normalized(window->ray.ray_direction);
+	numerator = dot_product(sub_vec(plane->point, window->ray.ray_direction), plane->normalize);
 	denominator = dot_product(l, plane->normalize);
 	if (denominator == 0)
 	{
@@ -37,7 +37,7 @@ void	material_plane(t_window *window, t_plane *plane)
 {
 	plane->mat.ambient = window->scene->ambi.ratio;
 	plane->mat.diffuse = 0.9;
-	plane->mat.specular = 0.1;
+	plane->mat.specular = 0.9;
 	plane->mat.shininess = 200.0;
 }
 
@@ -50,7 +50,6 @@ t_fvec3	plane_hitted(t_window *window)
 	while (plane->n_object != window->hit.nb_objet)
 		plane = plane->next;
 	material_plane(window, plane);
-	phong.shadow = 0;
 	phong.mat = plane->mat;
 	phong.intersected_point = at(window->hit.lowest_t, window);
 	phong.normalv = plane->normalize;

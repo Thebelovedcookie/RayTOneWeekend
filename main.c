@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:13:13 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/12 20:21:58 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:57:47 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ double	**create_tab(t_window *window)
 	double	**tab;
 	int		i;
 
+	i = 0;
 	tab = malloc(window->scene->nb_object * sizeof(double *));
 	if (!tab)
 		printf("malloc failed\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 21:01:16 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/21 22:17:24 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:28:51 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	intersect_function(t_window *window)
 	cylind = *(window->scene->tab_cy);
 	while (cylind)
 	{
-		t = hit_cylinder(window, cylind);
+		t = intersect_cylinder(window, cylind);
 		if (t > 0.0)
 		{
 			add_to_tab(window, cylind->n_object, 3, t);
@@ -127,39 +127,6 @@ void	intersect_function(t_window *window)
 		cylind = cylind->next;
 	}
 }
-
-// int	render(void *param)
-// {
-// 	t_window	*window;
-// 	int			x;
-// 	int			y;
-// 	t_fvec3		pixel_center;
-// 	t_fvec3		color;
-
-// 	x = 0;
-// 	y = 0;
-// 	window = (t_window *)param;
-// 	aspect_ratio(window);
-// 	while (y < window->ratio.image_height)
-// 	{
-// 		x = 0;
-// 		while (x < window->size_x)
-// 		{
-// 			pixel_center = sum_vec3(sum_vec3(window->scene->cam.pixel00_loc,
-// 						double_x_vec3(x, window->scene->cam.pixel_delta_u)),
-// 					double_x_vec3(y, window->scene->cam.pixel_delta_v));
-// 			window->ray.ray_direction = minus_vec3(pixel_center, window->scene->cam.view_point);
-// 			window->scene->light.ray_direction = minus_vec3(pixel_center, window->scene->light.light_point);
-// 			intersect_function(window);
-// 			color = get_color(window);
-// 			my_mlx_pixel_put(window, x, y, create_trgb(color));
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	mlx_put_image_to_window(window->mlx_ptr, window->win_ptr, window->img.img_ptr, 0, 0);
-// 	return (0);
-// }
 
 int	render(void *param)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_formule.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:33:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/18 22:09:10 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:05:53 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_fvec3	negating_vec3(t_fvec3 a)
 	return (d);
 }
 
-t_fvec3	minus_double_fvec3(t_fvec3 b, double a)
+t_fvec3	sub_double_vec(t_fvec3 b, double a)
 {
 	t_fvec3	c;
 
@@ -45,7 +45,7 @@ t_fvec3	minus_double_fvec3(t_fvec3 b, double a)
 }
 
 
-t_fvec3	minus_vec3(t_fvec3 a, t_fvec3 b)
+t_fvec3	sub_vec(t_fvec3 a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -85,7 +85,7 @@ t_fvec3	double_x_vec3(double a, t_fvec3 b)
 	return (c);
 }
 
-t_fvec3	vector_cross_vec3(t_fvec3 a, t_fvec3 b)
+t_fvec3	cross_prod(t_fvec3 a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -113,12 +113,12 @@ double	length_squared(t_fvec3 a)
 	return (a.x * a.x + a.y * a.y + a.z * a.z);
 }
 
-t_fvec3		unit_vector(t_fvec3 a)
+t_fvec3		normalized(t_fvec3 a)
 {
 	return (divide_vec3(a, length(a)));
 }
 
 t_fvec3	normal_at(t_sphere *sphere, t_fvec3 point)
 {
-	return (unit_vector(minus_vec3(point, sphere->center)));
+	return (normalized(sub_vec(point, sphere->center)));
 }
