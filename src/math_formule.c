@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   math_formule.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:33:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/22 17:05:53 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:27:54 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_fvec3	divide_vec3(t_fvec3 a, double b)
+t_fvec3	dive(t_fvec3 a, double b)
 {
 	double	c;
 	t_fvec3	d;
@@ -24,7 +24,7 @@ t_fvec3	divide_vec3(t_fvec3 a, double b)
 	return (d);
 }
 
-t_fvec3	negating_vec3(t_fvec3 a)
+t_fvec3	negat(t_fvec3 a)
 {
 	t_fvec3	d;
 
@@ -34,18 +34,7 @@ t_fvec3	negating_vec3(t_fvec3 a)
 	return (d);
 }
 
-t_fvec3	sub_double_vec(t_fvec3 b, double a)
-{
-	t_fvec3	c;
-
-	c.x = b.x - a;
-	c.y = b.y - a;
-	c.z = b.z - a;
-	return (c);
-}
-
-
-t_fvec3	sub_vec(t_fvec3 a, t_fvec3 b)
+t_fvec3	sub(t_fvec3 a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -55,7 +44,7 @@ t_fvec3	sub_vec(t_fvec3 a, t_fvec3 b)
 	return (c);
 }
 
-t_fvec3	sum_vec3(t_fvec3 a, t_fvec3 b)
+t_fvec3	sum(t_fvec3 a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -75,7 +64,7 @@ t_fvec3	x_vec3(t_fvec3 a, t_fvec3 b)
 	return (c);
 }
 
-t_fvec3	double_x_vec3(double a, t_fvec3 b)
+t_fvec3	dmul(double a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -85,7 +74,7 @@ t_fvec3	double_x_vec3(double a, t_fvec3 b)
 	return (c);
 }
 
-t_fvec3	cross_prod(t_fvec3 a, t_fvec3 b)
+t_fvec3	cross(t_fvec3 a, t_fvec3 b)
 {
 	t_fvec3	c;
 
@@ -95,7 +84,7 @@ t_fvec3	cross_prod(t_fvec3 a, t_fvec3 b)
 	return (c);
 }
 
-double	dot_product(t_fvec3 a, t_fvec3 b)
+double	dot(t_fvec3 a, t_fvec3 b)
 {
 	double	c;
 
@@ -115,10 +104,10 @@ double	length_squared(t_fvec3 a)
 
 t_fvec3		normalized(t_fvec3 a)
 {
-	return (divide_vec3(a, length(a)));
+	return (dive(a, length(a)));
 }
 
 t_fvec3	normal_at(t_sphere *sphere, t_fvec3 point)
 {
-	return (normalized(sub_vec(point, sphere->center)));
+	return (normalized(sub(point, sphere->center)));
 }

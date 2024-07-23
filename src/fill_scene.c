@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:08:27 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/12 17:59:22 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:03:51 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,36 +141,34 @@ void	fill_plane(char *str, t_plane *plane, t_scene *scene)
 	plane->n_object = scene->nb_object;
 }
 
-void	fill_cylindre(char *str, t_cylindre *cylindre, t_scene *scene)
+void	fill_cylindre(char *str, t_cylindre *c, t_scene *scene)
 {
 	int		i;
-	char	*tmp;
+	char	*t;
 	t_vec3	color;
 
 	i = 0;
 	while (str[i] && (!(str[i] >= '0' && str[i] <= '9') && str[i] != '-'))
 		i++;
 	if (str[i] == '\0')
-		error("Cylindre : no input", scene);
-	tmp = &str[i];
-	cylindre->center = (t_fvec3){ft_strtod(tmp, &tmp), ft_strtod(tmp, &tmp),
-		ft_strtod(tmp, &tmp)};
-	cylindre->normalize = (t_fvec3){ft_strtod(tmp, &tmp), ft_strtod(tmp, &tmp),
-		ft_strtod(tmp, &tmp)};
-	cylindre->diameter = ft_strtod(tmp, &tmp);
-	cylindre->height = ft_strtod(tmp, &tmp);
-	color = (t_vec3){(int)ft_strtod(tmp, &tmp),
-		(int)ft_strtod(tmp, &tmp), (int)ft_strtod(tmp, &tmp)};
-	if ((cylindre->normalize.x < -1.0 || cylindre->normalize.x > 1.0)
-		|| (cylindre->normalize.y < -1.0 || cylindre->normalize.y > 1.0)
-		|| (cylindre->normalize.z < -1.0 || cylindre->normalize.z > 1.0))
+		error("cylindre : no input", scene);
+	t = &str[i];
+	c->center = (t_fvec3){ft_strtod(t, &t), ft_strtod(t, &t), ft_strtod(t, &t)};
+	c->axe = (t_fvec3){ft_strtod(t, &t), ft_strtod(t, &t), ft_strtod(t, &t)};
+	c->diameter = ft_strtod(t, &t);
+	c->height = ft_strtod(t, &t);
+	color = (t_vec3){(int)ft_strtod(t, &t),
+		(int)ft_strtod(t, &t), (int)ft_strtod(t, &t)};
+	if ((c->axe.x < -1.0 || c->axe.x > 1.0)
+		|| (c->axe.y < -1.0 || c->axe.y > 1.0)
+		|| (c->axe.z < -1.0 || c->axe.z > 1.0))
 		error("cylindre : normalize", scene);
 	if ((color.blue < 0 || color.blue > 255) || (color.green < 0
 			|| color.green > 255) || (color.red < 0 || color.red > 255))
 		error("cylindre : color", scene);
-	cylindre->color.x = (double)color.red / 255;
-	cylindre->color.y = (double)color.green / 255;
-	cylindre->color.z = (double)color.blue / 255;
+	c->color.x = (double)color.red / 255;
+	c->color.y = (double)color.green / 255;
+	c->color.z = (double)color.blue / 255;
 	scene->nb_object += 1;
-	cylindre->n_object = scene->nb_object;
+	c->n_object = scene->nb_object;
 }

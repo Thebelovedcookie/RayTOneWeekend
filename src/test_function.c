@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:00:07 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/19 14:42:32 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:07:01 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	print_scene(t_scene *scene)
 			cylindre_tmp->center.x,
 			cylindre_tmp->center.y,
 			cylindre_tmp->center.z,
-			cylindre_tmp->normalize.x,
-			cylindre_tmp->normalize.y,
-			cylindre_tmp->normalize.z,
+			cylindre_tmp->axe.x,
+			cylindre_tmp->axe.y,
+			cylindre_tmp->axe.z,
 			cylindre_tmp->diameter,
 			cylindre_tmp->height,
 			cylindre_tmp->color.x,

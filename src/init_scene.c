@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:27:37 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/12 20:03:49 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:06:32 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_cylindre	*new_cylindre(t_scene *scene)
 	new = malloc (1 * sizeof(t_cylindre));
 	if (!new)
 		ex_malloc_fail(scene);
-	new->normalize = (t_fvec3){0.0, 0.0, 0.0};
+	new->axe = (t_fvec3){0.0, 0.0, 0.0};
 	new->color = (t_fvec3){0, 0, 0};
 	new->height = 0.0;
 	new->center = (t_fvec3){0.0, 0.0, 0.0};
