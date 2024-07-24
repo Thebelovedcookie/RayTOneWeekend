@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:51:31 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 00:02:01 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:02:02 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// void	calc_base(t_w *w, t_camera *cam)
-// {
-// 	t_fvec3	vise;
-
-// 	vise = sum(cam->view_point, cam->normalize);
-// 	cam->theta = (cam->fov * M_PI) / 180;
-// 	cam->h = tan(cam->theta / 2);
-// 	cam->viewport_height = 2.0 * cam->h;
-// 	cam->viewport_width = (w->size_x / w->size_y)
-// 		* cam->viewport_height;
-// 	cam->w = normalized(sub(cam->view_point, vise));
-// 	cam->u = normalized(cross((t_fvec3){0, 1, 0}, cam->w));
-// 	cam->v = cross(cam->w, cam->u);
-// 	cam->horiz = dmul(cam->viewport_width, cam->u);
-// 	cam->verti = dmul(cam->viewport_height, cam->v);
-// 	cam->lower_left_corner = sub(sub(sub(cam->view_point,
-// 					dive(cam->horiz, 2.0)), dive(cam->verti, 2.0)), cam->w);
-// }
 
 void	camera(t_w *w, t_camera *cam)
 {

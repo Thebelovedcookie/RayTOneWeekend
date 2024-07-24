@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:53:35 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 11:41:34 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:01:25 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ double	hit_plane(t_w *w, t_plane *plane)
 	if (denominator == 0)
 	{
 		if (numerator == 0)
-		{
 			return (0);
-		}
 		return (-1);
 	}
 	else
@@ -55,18 +53,10 @@ t_fvec3	plane_hitted(t_w *w)
 	phong.normalv = plane->normalize;
 	phong.ambient = ambient(plane->color, plane->mat, w);
 	diffuse(plane->color, w, &phong);
-	if (phong.shadow == 1)
+	if ((phong.diffuse.x == 0.0 && phong.diffuse.y == 0.0
+			&& phong.diffuse.z == 0.0) || phong.shadow == 1)
 		return (phong.ambient);
-	if (phong.diffuse.x == 0.0 && phong.diffuse.y == 0.0 && phong.diffuse.z == 0.0)
-	{
-		phong.specular = (t_fvec3){0.0, 0.0, 0.0};
-		return (sum(sum(phong.ambient,
-					phong.diffuse), phong.specular));
-	}
 	phong.vector_eye = negat(w->ray.ray_direction);
 	specular(&phong, w);
-	return (sum(phong.ambient,
-				phong.diffuse));
-	return (sum(sum(phong.ambient,
-				phong.diffuse), phong.specular));
+	return (sum(phong.ambient, phong.diffuse));
 }

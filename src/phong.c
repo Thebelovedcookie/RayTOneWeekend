@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:19:28 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 15:22:06 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:13:41 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	diffuse(t_fvec3 color, t_w *w, t_phong *phong)
 	}
 	phong->effective_color = dmul(light.brightness, color);
 	light_dot_normal = dot(phong->lightv, phong->normalv);
-	if (light_dot_normal < 0.0)
+	if (light_dot_normal < EPSILON)
 	{
 		phong->diffuse = ((t_fvec3){0.0, 0.0, 0.0});
 		return ;
@@ -58,7 +58,7 @@ void	specular(t_phong *phong, t_w *w)
 
 	reflectv = reflection(negat(phong->lightv), phong->normalv);
 	reflect_dot_eye = dot(reflectv, phong->vector_eye);
-	if (reflect_dot_eye <= 0.0)
+	if (reflect_dot_eye <= EPSILON)
 	{
 		phong->specular = (t_fvec3){0.0, 0.0, 0.0};
 		return ;

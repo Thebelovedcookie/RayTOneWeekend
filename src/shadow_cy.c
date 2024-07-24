@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow_cy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:20:19 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 15:37:15 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:10:47 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ double	hit_cylinder_shadow(t_w *w, t_cylindre *cy)
 					cross(v.n, v.a))) * (dot(sub(cy->center,
 						w->ray.ray_light_origin), cross(v.n, v.a))));
 	v.h = dot(cross(v.n, v.a), cross(v.n, v.a));
-	if (v.f - v.g < 0 || v.h == 0)
+	if (v.f - v.g < EPSILON || v.h == 0)
 		return (-1);
 	v.d1 = (v.e - sqrt(v.f - v.g)) / v.h;
-	v.d2 = (v.e + sqrt(v.f - v.g)) / v.h;
+	// v.d2 = (v.e + sqrt(v.f - v.g)) / v.h;
 	v.t1 = dot(v.a, sub(dmul(v.d1, v.n),
 				sub(cy->center, w->ray.ray_light_origin)));
-	v.t2 = dot(v.a, sub(dmul(v.d2, v.n),
-				sub(cy->center, w->ray.ray_light_origin)));
-	if (v.t1 > 0.0 && v.t1 < cy->height)
+	// v.t2 = dot(v.a, sub(dmul(v.d2, v.n),
+	// 			sub(cy->center, w->ray.ray_light_origin)));
+	if (v.t1 > EPSILON && v.t1 < cy->height)
 		return (v.d1);
-	if (v.t2 > 0.0 && v.t2 < cy->height)
-		return (v.d2);
+	// if (v.t2 > EPSILON && v.t2 < cy->height)
+	// 	return (v.d2);
 	return (-1);
 }
 
@@ -54,7 +54,7 @@ double	intersect_cylinder_shadow(t_w *w, t_cylindre *cylindre)
 	lowest = INT_MAX;
 	while (i < 3)
 	{
-		if (tab[i] > 0 && tab[i] < lowest)
+		if (tab[i] > EPSILON && tab[i] < lowest)
 			lowest = tab[i];
 		i++;
 	}
@@ -97,9 +97,10 @@ double	hit_disk_1_shadow(t_cylindre *cylindre, t_w *w)
 	parallele = dot(cy_direction, w->ray.ray_light_direction);
 	if (parallele == 0)
 		return (-1);
-	distance = dot(cy_direction, sub(cylindre->center, w->ray.ray_light_origin)) / parallele;
-	a = sub(dmul(distance,
-				w->ray.ray_light_direction), sub(cylindre->center, w->ray.ray_light_origin));
+	distance = dot(cy_direction, sub(cylindre->center,
+			w->ray.ray_light_origin)) / parallele;
+	a = sub(dmul(distance, w->ray.ray_light_direction),
+			sub(cylindre->center, w->ray.ray_light_origin));
 	if (dot(a, a) < ((cylindre->diameter / 2)
 			* (cylindre->diameter / 2)))
 		return (distance);

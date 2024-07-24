@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:28:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 00:03:35 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:55:15 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <math.h>
 # include "type.h"
 # include <limits.h>
+
+# define EPSILON 0.000001
 
 typedef struct s_scene
 {

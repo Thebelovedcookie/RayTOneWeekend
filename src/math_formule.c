@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_formule.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 13:33:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 11:27:54 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:11:25 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ double	length_squared(t_fvec3 a)
 	return (a.x * a.x + a.y * a.y + a.z * a.z);
 }
 
-t_fvec3		normalized(t_fvec3 a)
+t_fvec3	normalized(t_fvec3 a)
 {
 	return (dive(a, length(a)));
 }

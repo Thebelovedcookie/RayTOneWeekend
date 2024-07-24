@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:19:14 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 15:22:00 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:59:35 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ int	intersect_function_shad(t_w *w)
 	sphere = *(w->scene->tab_sp);
 	while (sphere)
 	{
-		if (hit_sphere_shadow(w, sphere) >= 0.0)
+		if (hit_sphere_shadow(w, sphere) >= EPSILON)
 			return (0);
 		sphere = sphere->next;
 	}
 	plane = *(w->scene->tab_pl);
 	while (plane)
 	{
-		if (hit_plane_shadow(w, plane) >= 0.0)
+		if (hit_plane_shadow(w, plane) >= EPSILON)
 			return (1);
 		plane = plane->next;
 	}
 	cylind = *(w->scene->tab_cy);
 	while (cylind)
 	{
-		if (intersect_cylinder_shadow(w, cylind) >= 0)
+		if (intersect_cylinder_shadow(w, cylind) >= EPSILON)
 			return (0);
 		cylind = cylind->next;
 	}
@@ -57,7 +57,7 @@ double	hit_sphere_shadow(t_w *w, t_sphere *sphere)
 	c = length_squared(vector_origin_center)
 		- ((sphere->diameter / 2.0) * (sphere->diameter / 2.0));
 	discriminant = b * b - (a * c);
-	if (discriminant < 0.0)
+	if (discriminant < EPSILON)
 		return (-1.0);
 	return (b - sqrt(discriminant) / a);
 }

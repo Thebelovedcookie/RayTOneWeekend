@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 21:01:16 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 00:03:13 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:11:56 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	intersect_function(t_w *w)
 	while (sphere)
 	{
 		t = hit_sphere(w, sphere);
-		if (t > 0.0)
+		if (t > EPSILON)
 		{
 			add_to_tab(w, sphere->n_object, 1, t);
 		}
@@ -112,7 +112,7 @@ void	intersect_function(t_w *w)
 	while (plane)
 	{
 		t = hit_plane(w, plane);
-		if (t > 0.0)
+		if (t > EPSILON)
 			add_to_tab(w, plane->n_object, 2, t);
 		plane = plane->next;
 	}
@@ -120,7 +120,7 @@ void	intersect_function(t_w *w)
 	while (cylind)
 	{
 		t = intersect_cylinder(w, cylind);
-		if (t > 0.0)
+		if (t > EPSILON)
 		{
 			add_to_tab(w, cylind->n_object, 3, t);
 		}

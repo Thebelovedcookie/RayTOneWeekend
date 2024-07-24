@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:49:05 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 11:41:23 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:00:10 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	hit_sphere(t_w *w, t_sphere *sphere)
 	c = length_squared(vector_origin_center)
 		- ((sphere->diameter / 2.0) * (sphere->diameter / 2.0));
 	discriminant = b * b - (a * c);
-	if (discriminant < 0.0)
+	if (discriminant < EPSILON)
 		return (-1.0);
 	return (b - sqrt(discriminant) / a);
 }

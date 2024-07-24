@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:19:37 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 15:37:02 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:10:55 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double	hit_cylinder(t_w *w, t_cylindre *cylindre)
 					cross(v.n, v.a))) * (dot(sub(cylindre->center,
 						w->ray.ray_origin), cross(v.n, v.a))));
 	v.h = dot(cross(v.n, v.a), cross(v.n, v.a));
-	if (v.f - v.g < 0 || v.h == 0)
+	if (v.f - v.g < EPSILON || v.h == 0)
 		return (-1);
 	v.d1 = (v.e - sqrt(v.f - v.g)) / v.h;
 	v.d2 = (v.e + sqrt(v.f - v.g)) / v.h;
@@ -34,9 +34,9 @@ double	hit_cylinder(t_w *w, t_cylindre *cylindre)
 				sub(cylindre->center, w->ray.ray_origin)));
 	v.t2 = dot(v.a, sub(dmul(v.d2, v.n),
 				sub(cylindre->center, w->ray.ray_origin)));
-	if (v.t1 > 0.0 && v.t1 < cylindre->height)
+	if (v.t1 > EPSILON && v.t1 < cylindre->height)
 		return (v.d1);
-	if (v.t2 > 0.0 && v.t2 < cylindre->height)
+	if (v.t2 > EPSILON && v.t2 < cylindre->height)
 		return (v.d2);
 	return (-1);
 }
@@ -54,7 +54,7 @@ double	intersect_cylinder(t_w *w, t_cylindre *cylindre)
 	lowest = INT_MAX;
 	while (i < 3)
 	{
-		if (tab[i] > 0.0 && tab[i] < lowest)
+		if (tab[i] > EPSILON && tab[i] < lowest)
 			lowest = tab[i];
 		i++;
 	}
