@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 21:01:16 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 21:10:39 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:26:36 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	create_trgb(t_fvec3 color)
-{
-	t_vec3	color_int;
-
-	color_int.r = color.x * 255;
-	if (color_int.r > 255)
-		color_int.r = 255;
-	color_int.g = color.y * 255;
-	if (color_int.g > 255)
-		color_int.g = 255;
-	color_int.b = color.z * 255;
-	if (color_int.b > 255)
-		color_int.b = 255;
-	return (color_int.r << 16 | color_int.g << 8
-		| color_int.b);
-}
 
 void	my_mlx_pixel_put(t_w *w, int x, int y, int color)
 {
@@ -36,19 +19,6 @@ void	my_mlx_pixel_put(t_w *w, int x, int y, int color)
 	dst = w->img.addr + (y * w->img.line_length
 			+ x * (w->img.bbp / 8));
 	*(unsigned int *)dst = color;
-}
-
-t_fvec3	at(double t, t_w *w)
-{
-	return (sum(w->scene->cam.view_point,
-			dmul(t, w->ray.ray_direction)));
-}
-
-void	add_to_tab(t_w *w, int index, int type_obj, double t)
-{
-	w->tab_inter[index - 1][0] = type_obj;
-	w->tab_inter[index - 1][1] = t;
-	w->tab_inter[index - 1][2] = index;
 }
 
 int	hit(t_w *w)
@@ -75,26 +45,10 @@ int	hit(t_w *w)
 	return (1);
 }
 
-t_fvec3	get_color(t_w *w)
-{
-	if (hit(w))
-	{
-		if (w->hit.type_objet == 1)
-			return (sphere_hitted(w));
-		if (w->hit.type_objet == 2)
-			return (plane_hitted(w));
-		if (w->hit.type_objet == 3)
-			return (cylinder_hitted(w));
-	}
-	return (dmul(w->scene->ambi.ratio,
-			w->scene->ambi.color));
-}
-
 void	intersect_function(t_w *w)
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
-	t_cylindre	*cylind;
 	double		t;
 
 	init_tab(w);
@@ -114,6 +68,14 @@ void	intersect_function(t_w *w)
 			add_to_tab(w, plane->n_object, 2, t);
 		plane = plane->next;
 	}
+	intersect_help(w);
+}
+
+void	intersect_help(t_w *w)
+{
+	t_cylindre	*cylind;
+	double		t;
+
 	cylind = *(w->scene->tab_cy);
 	while (cylind)
 	{

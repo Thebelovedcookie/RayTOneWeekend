@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:30:53 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 19:40:10 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:17:36 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct s_phong
 	t_fvec3		specular;
 	int			shadow;
 }				t_phong;
-
 
 typedef struct s_ray
 {

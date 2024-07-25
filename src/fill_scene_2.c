@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_scene_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 20:11:40 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/25 11:38:26 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:11:37 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	fill_cylindre(char *str, t_cylindre *cy, t_scene *scene)
 	cy->height = ft_strtod(t, &t);
 	check_space(t, 0, str, scene);
 	c = create_vec3(&t, scene, str);
-	check_cylinder_value(cy, scene, c, str);
+	check_cyl_val(cy, scene, c, str);
 	scene->nb_object += 1;
 	cy->n_object = scene->nb_object;
 }

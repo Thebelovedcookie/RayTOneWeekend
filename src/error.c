@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 13:37:45 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/25 11:39:49 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:13:08 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error(char *error, t_scene *scene, char *str)
 {
-	ft_fprintf(2, "Error: bad input format with %s\n", error);
+	ft_fprintf(2, "Error\nbad input format with %s\n", error);
 	while (str)
 	{
 		free(str);

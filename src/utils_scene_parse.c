@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_scene_parse.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 20:08:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 23:14:45 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:10:50 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_plane_value(t_plane *p, t_scene *scene, t_vec3 c, char *str)
 	p->color.z = (double)c.b / 255;
 }
 
-void	check_cylinder_value(t_cylindre *cy, t_scene *scene, t_vec3 c, char *str)
+void	check_cyl_val(t_cylindre *cy, t_scene *scene, t_vec3 c, char *str)
 {
 	if ((cy->axe.x < -1.0 || cy->axe.x > 1.0) || (cy->axe.y < -1.0
 			|| cy->axe.y > 1.0) || (cy->axe.z < -1.0 || cy->axe.z > 1.0))

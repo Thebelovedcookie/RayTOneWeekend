@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:19:14 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 21:11:25 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:32:59 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	intersect_function_shad(t_w *w)
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
-	t_cylindre	*cylind;
 
 	sphere = *(w->scene->tab_sp);
 	while (sphere)
@@ -32,6 +31,15 @@ int	intersect_function_shad(t_w *w)
 			return (1);
 		plane = plane->next;
 	}
+	if (intersect_shad_help(w) == 0)
+		return (0);
+	return (1);
+}
+
+int	intersect_shad_help(t_w *w)
+{
+	t_cylindre	*cylind;
+
 	cylind = *(w->scene->tab_cy);
 	while (cylind)
 	{

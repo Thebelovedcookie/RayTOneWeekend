@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:28:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/25 11:37:02 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:29:46 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		check_space(char *tmp, int bool, char *str, t_scene *scene);
 t_fvec3		create_fvec3(char **tmp, t_scene *scene, char *str);
 t_vec3		create_vec3(char **tmp, t_scene *scene, char *str);
 void		check_plane_value(t_plane *p, t_scene *scene, t_vec3 c, char *str);
-void		check_cylinder_value(t_cylindre *cy, t_scene *scene, t_vec3 c, char *str);
+void		check_cyl_val(t_cylindre *cy, t_scene *scene, t_vec3 c, char *str);
 
 //add
 void		add_sphere(char *str, t_scene *scene);
@@ -115,6 +115,8 @@ t_fvec3		get_color(t_w *w);
 double		hit_sphere(t_w *w, t_sphere *sphere);
 double		hit_plane(t_w *w, t_plane *plane);
 void		intersect_function(t_w *w);
+void		intersect_help(t_w *w);
+void		add_to_tab(t_w *w, int index, int type_obj, double t);
 t_fvec3		sphere_hitted(t_w *w);
 int			hit(t_w *w);
 void		init_tab(t_w *w);
@@ -154,6 +156,7 @@ void		material_cylind(t_cylindre *cylindre, t_w *w);
 /*************************** SHADOW            *******************************/
 
 int			intersect_function_shad(t_w *w);
+int			intersect_shad_help(t_w *w);
 double		hit_sphere_shadow(t_w *w, t_sphere *sphere);
 double		hit_plane_shadow(t_w *w, t_plane *plane);
 

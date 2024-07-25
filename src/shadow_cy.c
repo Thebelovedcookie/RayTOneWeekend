@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow_cy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:20:19 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 21:11:11 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:08:28 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,9 @@ double	hit_cylinder_shadow(t_w *w, t_cylindre *cy)
 	if (v.f - v.g < EPSILON || v.h == 0)
 		return (-1);
 	v.d1 = (v.e - sqrt(v.f - v.g)) / v.h;
-	// v.d2 = (v.e + sqrt(v.f - v.g)) / v.h;
 	v.t1 = dot(v.a, sub(dmul(v.d1, v.n),
 				sub(cy->center, w->ray.ray_light_origin)));
-	// v.t2 = dot(v.a, sub(dmul(v.d2, v.n),
-	// 			sub(cy->center, w->ray.ray_light_origin)));
 	if (v.t1 > EPSILON && v.t1 < cy->height)
 		return (v.d1);
-	// if (v.t2 > EPSILON && v.t2 < cy->height)
-	// 	return (v.d2);
 	return (-1);
 }

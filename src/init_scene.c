@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:27:37 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/25 11:37:16 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:57:07 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	init_scene(t_scene	*scene)
+{
+	scene->ambi.color = (t_fvec3){0, 0, 0};
+	scene->ambi.ratio = 0.0;
+	scene->cam.view_point = (t_fvec3){0.0, 0.0, 0.0};
+	scene->cam.normalize = (t_fvec3){0.0, 0.0, 0.0};
+	scene->cam.fov = 0;
+	scene->light.light_point = (t_fvec3){0.0, 0.0, 0.0};
+	scene->light.brightness = 0.0;
+}
 
 t_scene	*create_scene(void)
 {
@@ -19,13 +30,7 @@ t_scene	*create_scene(void)
 	scene = malloc(1 * sizeof(t_scene));
 	if (!scene)
 		ex_malloc_fail(scene);
-	scene->ambi.color = (t_fvec3){0, 0, 0};
-	scene->ambi.ratio = 0.0;
-	scene->cam.view_point = (t_fvec3){0.0, 0.0, 0.0};
-	scene->cam.normalize = (t_fvec3){0.0, 0.0, 0.0};
-	scene->cam.fov = 0;
-	scene->light.light_point = (t_fvec3){0.0, 0.0, 0.0};
-	scene->light.brightness = 0.0;
+	init_scene(scene);
 	scene->tab_sp = malloc(1 * sizeof(t_sphere *));
 	if (!scene->tab_sp)
 		ex_malloc_fail(scene);

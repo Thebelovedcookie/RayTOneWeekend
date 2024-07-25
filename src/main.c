@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:13:13 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/25 11:35:43 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:30:03 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 		ft_fprintf(2, "i can't close\n");
 	w.tab_inter = create_tab(&w);
 	init_tab(&w);
-	print_scene(w.scene);
 	create_w(w.scene, &w);
 	free_all(&w);
 	return (0);
