@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:00:07 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 12:07:01 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:14:37 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	print_scene(t_scene *scene)
 			plane_tmp->point.x,
 			plane_tmp->point.y,
 			plane_tmp->point.z,
-			plane_tmp->normalize.x,
-			plane_tmp->normalize.y,
-			plane_tmp->normalize.z,
+			plane_tmp->dir.x,
+			plane_tmp->dir.y,
+			plane_tmp->dir.z,
 			plane_tmp->color.x,
 			plane_tmp->color.y,
 			plane_tmp->color.z);

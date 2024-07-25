@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 21:01:16 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 15:11:56 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:10:39 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	create_trgb(t_fvec3 color)
 {
 	t_vec3	color_int;
 
-	color_int.red = color.x * 255;
-	if (color_int.red > 255)
-		color_int.red = 255;
-	color_int.green = color.y * 255;
-	if (color_int.green > 255)
-		color_int.green = 255;
-	color_int.blue = color.z * 255;
-	if (color_int.blue > 255)
-		color_int.blue = 255;
-	return (color_int.red << 16 | color_int.green << 8
-		| color_int.blue);
+	color_int.r = color.x * 255;
+	if (color_int.r > 255)
+		color_int.r = 255;
+	color_int.g = color.y * 255;
+	if (color_int.g > 255)
+		color_int.g = 255;
+	color_int.b = color.z * 255;
+	if (color_int.b > 255)
+		color_int.b = 255;
+	return (color_int.r << 16 | color_int.g << 8
+		| color_int.b);
 }
 
 void	my_mlx_pixel_put(t_w *w, int x, int y, int color)
@@ -103,9 +103,7 @@ void	intersect_function(t_w *w)
 	{
 		t = hit_sphere(w, sphere);
 		if (t > EPSILON)
-		{
 			add_to_tab(w, sphere->n_object, 1, t);
-		}
 		sphere = sphere->next;
 	}
 	plane = *(w->scene->tab_pl);
@@ -119,11 +117,9 @@ void	intersect_function(t_w *w)
 	cylind = *(w->scene->tab_cy);
 	while (cylind)
 	{
-		t = intersect_cylinder(w, cylind);
+		t = hit_cylinder(w, cylind);
 		if (t > EPSILON)
-		{
 			add_to_tab(w, cylind->n_object, 3, t);
-		}
 		cylind = cylind->next;
 	}
 }

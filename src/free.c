@@ -6,25 +6,40 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 13:38:41 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/06/22 21:19:24 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:01:53 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	free_scene(t_scene *scene)
+void	free_scene(t_scene **scene)
 {
-	if (scene)
+	if (*scene)
 	{
-		if (scene->tab_cy)
-			free_tab_cy(&(scene->tab_cy));
-		if (scene->tab_pl)
-			free_tab_pl(&(scene->tab_pl));
-		if (scene->tab_sp)
-			free_tab_sp(&(scene->tab_sp));
-		free(scene);
-		scene = NULL;
+		if ((*scene)->tab_cy)
+		{
+			free_tab_cy(&((*scene)->tab_cy));
+			free((*scene)->tab_cy);
+		}
+		if ((*scene)->tab_pl)
+		{
+			free_tab_pl(&((*scene)->tab_pl));
+			free((*scene)->tab_pl);
+		}
+		if ((*scene)->tab_sp)
+		{
+			free_tab_sp(&((*scene)->tab_sp));
+			free((*scene)->tab_sp);
+		}
+		free(*scene);
+		*scene = NULL;
 	}
+}
+
+void	free_all(t_w *w)
+{
+	free_tab_inter(w);
+	free_scene(&w->scene);
 }
 
 void	free_tab_cy(t_cylindre ***cylindre)
@@ -79,4 +94,17 @@ void	free_tab_pl(t_plane ***plane)
 		free(*plane);
 		*plane = NULL;
 	}
+}
+
+void	free_tab_inter(t_w *w)
+{
+	int	i;
+
+	i = 0;
+	while (i < w->scene->nb_object)
+	{
+		free(w->tab_inter[i]);
+		i++;
+	}
+	free(w->tab_inter);
 }

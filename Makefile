@@ -8,7 +8,8 @@ HEADER_FOLDER = includes
 SRC = main.c fill_scene.c scene.c init_scene.c \
 add_object.c error.c free.c test_function.c window.c \
 render.c math_formule.c hit_plane.c sphere_intersection.c \
-camera.c cylinder.c phong.c shadow.c shadow_cy.c cylinder_2.c
+camera.c cylinder.c phong.c shadow.c shadow_cy.c cylinder_2.c \
+utils_scene_parse.c fill_scene_2.c
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ 	= $(SRC:.c=.o)

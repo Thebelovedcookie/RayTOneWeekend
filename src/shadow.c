@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:19:14 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 14:59:35 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:11:25 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	intersect_function_shad(t_w *w)
 	cylind = *(w->scene->tab_cy);
 	while (cylind)
 	{
-		if (intersect_cylinder_shadow(w, cylind) >= EPSILON)
+		if (hit_cylinder_shadow(w, cylind) >= EPSILON)
 			return (0);
 		cylind = cylind->next;
 	}
@@ -70,8 +70,8 @@ double	hit_plane_shadow(t_w *w, t_plane *plane)
 
 	l = normalized(w->ray.ray_light_direction);
 	numerator = dot(sub(plane->point,
-				w->ray.ray_light_direction), plane->normalize);
-	denominator = dot(l, plane->normalize);
+				w->ray.ray_light_direction), plane->dir);
+	denominator = dot(l, plane->dir);
 	if (denominator == 0)
 	{
 		if (numerator == 0)

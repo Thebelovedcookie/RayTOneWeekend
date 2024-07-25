@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:27:37 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 12:06:32 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:37:16 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_scene	*create_scene(void)
 		ex_malloc_fail(scene);
 	*(scene->tab_cy) = NULL;
 	scene->nb_object = 0;
+	scene->fd = 0;
 	return (scene);
 }
 
@@ -63,7 +64,7 @@ t_plane	*new_plane(t_scene *scene)
 	new = malloc (1 * sizeof(t_plane));
 	if (!new)
 		ex_malloc_fail(scene);
-	new->normalize = (t_fvec3){0.0, 0.0, 0.0};
+	new->dir = (t_fvec3){0.0, 0.0, 0.0};
 	new->color = (t_fvec3){0, 0, 0};
 	new->point = (t_fvec3){0.0, 0.0, 0.0};
 	new->next = NULL;

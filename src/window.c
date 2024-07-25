@@ -39,11 +39,12 @@ int	close_via_cross(void *param)
 	t_w	*w;
 
 	w = (t_w *)param;
+	mlx_destroy_image(w->mlx_ptr, w->img.img_ptr);
 	mlx_clear_window(w->mlx_ptr, w->win_ptr);
 	mlx_destroy_window(w->mlx_ptr, w->win_ptr);
 	mlx_destroy_display(w->mlx_ptr);
 	free(w->mlx_ptr);
-	free_scene(w->scene);
+	free_all(w);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -55,11 +56,12 @@ int	close_via_escape(int keycode, void *param)
 	w = (t_w *)param;
 	if (keycode == 65307)
 	{
+		mlx_destroy_image(w->mlx_ptr, w->img.img_ptr);
 		mlx_clear_window(w->mlx_ptr, w->win_ptr);
 		mlx_destroy_window(w->mlx_ptr, w->win_ptr);
 		mlx_destroy_display(w->mlx_ptr);
 		free(w->mlx_ptr);
-		free_scene(w->scene);
+		free_all(w);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

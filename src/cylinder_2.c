@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:59:21 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 15:03:13 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:17:59 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ t_fvec3	cylinder_hitted(t_w *w)
 	while (cylindre->n_object != w->hit.nb_objet)
 		cylindre = cylindre->next;
 	material_cylind(cylindre, w);
+	phong.shadow = 0;
 	phong.mat = cylindre->mat;
 	phong.intersected_point = at(w->hit.lowest_t, w);
 	phong.normalv = calc_cy_normal(cylindre, phong.intersected_point);
 	phong.ambient = ambient(cylindre->color, cylindre->mat, w);
 	diffuse(cylindre->color, w, &phong);
-	if ((phong.diffuse.x == 0.0 && phong.diffuse.y == 0.0
-			&& phong.diffuse.z == 0.0) || phong.shadow == 1)
+	if (phong.shadow == 1 || (phong.diffuse.x == 0.0
+			&& phong.diffuse.y == 0.0 && phong.diffuse.z == 0.0))
 		return (phong.ambient);
 	phong.vector_eye = negat(w->ray.ray_direction);
 	specular(&phong, w);

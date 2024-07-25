@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:28:56 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 13:55:15 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:37:02 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_scene
 	t_sphere	**tab_sp;
 	t_plane		**tab_pl;
 	t_cylindre	**tab_cy;
+	int			fd;
 	int			nb_object;
 }				t_scene;
 
@@ -84,6 +85,14 @@ void		fill_light(char *str, t_scene *scene);
 void		fill_sphere(char *str, t_sphere *sphere, t_scene *scene);
 void		fill_plane(char *str, t_plane *plane, t_scene *scene);
 void		fill_cylindre(char *str, t_cylindre *cylindre, t_scene *scene);
+
+//utils and checking
+void		check_space(char *tmp, int bool, char *str, t_scene *scene);
+t_fvec3		create_fvec3(char **tmp, t_scene *scene, char *str);
+t_vec3		create_vec3(char **tmp, t_scene *scene, char *str);
+void		check_plane_value(t_plane *p, t_scene *scene, t_vec3 c, char *str);
+void		check_cylinder_value(t_cylindre *cy, t_scene *scene, t_vec3 c, char *str);
+
 //add
 void		add_sphere(char *str, t_scene *scene);
 void		add_plane(char *str, t_scene *scene);
@@ -114,12 +123,6 @@ t_fvec3		plane_hitted(t_w *w);
 double		hit_cylinder(t_w *w, t_cylindre *cylindre);
 t_fvec3		cylinder_hitted(t_w *w);
 double		hit_cylinder_shadow(t_w *w, t_cylindre *cylindre);
-double		intersect_cylinder(t_w *w, t_cylindre *cylindre);
-double		hit_disk_2(t_cylindre *cylindre, t_w *w);
-double		hit_disk_1(t_cylindre *cylindre, t_w *w);
-double		intersect_cylinder_shadow(t_w *w, t_cylindre *cylindre);
-double		hit_disk_2_shadow(t_cylindre *cylindre, t_w *w);
-double		hit_disk_1_shadow(t_cylindre *cylindre, t_w *w);
 
 /*************************** MATH FORMULE     *******************************/
 
@@ -153,20 +156,20 @@ void		material_cylind(t_cylindre *cylindre, t_w *w);
 int			intersect_function_shad(t_w *w);
 double		hit_sphere_shadow(t_w *w, t_sphere *sphere);
 double		hit_plane_shadow(t_w *w, t_plane *plane);
-int			hit_shadow(t_w *w);
-t_fvec3		get_shadow(t_w *w);
 
 /*************************** ERROR MANAGEMENT *******************************/
-void		error(char *error, t_scene *scene);
+void		error(char *error, t_scene *scene, char *str);
 void		ex_malloc_fail(t_scene *scene);
 void		error_w(void *mlx_ptr, t_scene *scene);
 
 /*************************** MEMORY MANAGEMENT ******************************/
 //free
-void		free_scene(t_scene *scene);
+void		free_scene(t_scene **scene);
+void		free_all(t_w *w);
 void		free_tab_cy(t_cylindre ***cylindre);
 void		free_tab_sp(t_sphere ***sphere);
 void		free_tab_pl(t_plane ***plane);
+void		free_tab_inter(t_w *w);
 
 /**************************** TEST MANAGEMENT ********************************/
 void		print_scene(t_scene *scene);

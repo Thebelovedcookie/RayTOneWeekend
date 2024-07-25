@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:49:05 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 14:00:10 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:17:54 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ t_fvec3	sphere_hitted(t_w *w)
 	while (sphere->n_object != w->hit.nb_objet)
 		sphere = sphere->next;
 	material(sphere, w);
+	phong.shadow = 0;
 	phong.mat = sphere->mat;
 	phong.intersected_point = at(w->hit.lowest_t, w);
 	phong.normalv = normal_at(sphere, phong.intersected_point);
 	phong.ambient = ambient(sphere->color, sphere->mat, w);
 	diffuse(sphere->color, w, &phong);
-	if ((phong.diffuse.x == 0.0 && phong.diffuse.y == 0.0
-			&& phong.diffuse.z == 0.0) || phong.shadow == 1)
+	if (phong.shadow == 1 || (phong.diffuse.x == 0.0
+			&& phong.diffuse.y == 0.0 && phong.diffuse.z == 0.0))
 		return (phong.ambient);
 	phong.vector_eye = negat(w->ray.ray_direction);
 	specular(&phong, w);

@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:30:53 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 23:55:52 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:40:10 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ typedef struct s_vec2
 
 typedef struct s_vec3
 {
-	int	red;
-	int	green;
-	int	blue;
+	int	r;
+	int	g;
+	int	b;
 }				t_vec3;
 
 typedef struct s_fvec3
@@ -46,27 +46,6 @@ typedef struct s_ambilight
 	double	ratio;
 	t_fvec3	color;
 }				t_ambilight;
-
-// typedef struct s_camera
-// {
-// 	t_fvec3	view_point;
-// 	t_fvec3	normalize;
-// 	double	fov;
-// 	t_fvec3	forward;
-// 	t_fvec3	right;
-// 	t_fvec3	up;
-// 	t_fvec3	w;
-// 	t_fvec3	u;
-// 	t_fvec3	v;
-// 	t_fvec3	horiz;
-// 	t_fvec3	verti;
-// 	t_fvec3	lower_left_corner;
-// 	t_fvec3	upper_left;
-// 	double	theta;
-// 	double	h;
-// 	double	viewport_height;
-// 	double	viewport_width;
-// }				t_camera;
 
 typedef struct s_camera
 {
@@ -100,7 +79,7 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	t_fvec3			point;
-	t_fvec3			normalize;
+	t_fvec3			dir;
 	t_fvec3			color;
 	t_material		mat;
 	double			n_object;

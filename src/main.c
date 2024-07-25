@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:13:13 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/23 11:41:35 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:35:43 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_tab(t_w *w)
 int	main(int argc, char **argv)
 {
 	int			fd;
-	t_w	w;
+	t_w			w;
 
 	if (argc != 2)
 	{
@@ -61,12 +61,12 @@ int	main(int argc, char **argv)
 	}
 	fd = open_my_file(argv[1]);
 	w.scene = read_my_file(fd);
+	if (close(fd) == -1)
+		ft_fprintf(2, "i can't close\n");
 	w.tab_inter = create_tab(&w);
 	init_tab(&w);
 	print_scene(w.scene);
 	create_w(w.scene, &w);
-	free_scene(w.scene);
-	if (close(fd) == -1)
-		ft_fprintf(2, "i can't close\n");
+	free_all(&w);
 	return (0);
 }

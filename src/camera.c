@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmahfoud <mmahfoud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 21:51:31 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/07/24 14:02:02 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:58:12 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	camera(t_w *w, t_camera *cam)
 	cam->ratio = w->size_x / w->size_y;
 	cam->angle = (cam->fov * M_PI) / 180;
 	cam->len_opp = tan(cam->angle / 2);
-	cam->right = dmul(cam->len_opp, normalized((t_fvec3){cam->normalize.z, 0, -cam->normalize.x}));
+	cam->right = dmul(cam->len_opp,
+		normalized((t_fvec3){cam->normalize.z, 0, -cam->normalize.x}));
 	cam->up = dmul((cam->len_opp / cam->ratio), normalized(cross(normalized(cam->normalize), cam->right)));
 }
 

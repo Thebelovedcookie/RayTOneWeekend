@@ -6,7 +6,7 @@
 /*   By: mmahfoud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:18:20 by mmahfoud          #+#    #+#             */
-/*   Updated: 2024/06/22 16:01:31 by mmahfoud         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:40:16 by mmahfoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_scene	*read_my_file(int fd)
 	t_scene	*scene;
 
 	scene = create_scene();
+	scene->fd = fd;
 	while (1)
 	{
 		str = get_next_line(fd);
